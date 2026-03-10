@@ -43,7 +43,8 @@ Source 2: PatriotWeb Planning Tool
  * This feature (which Coursicle doesn't have) is vital as students can see:
    * Associated course title with course number
    * Planned asynchronous courses
-   * Credits associated with each class (students may want to see which classes to drop or add to get to certain number of credits)
+   * Total Credits 
+   * Credits associated with each class
  * Issues with tabular listing of classes in PatriotWeb
    * Removing course requires two clicks
    * Instructor isn't listed 
