@@ -25,13 +25,13 @@ Source: coursicle.com
   * Filters
     * Day of the Week
     * Meeting Times
-  * Issues (what will our product attempt to fix)
+  * Issues with Coursicle (what will our product attempt to fix)
     * No filter for modality (in-person, online, asyncrhonous)
     * No filter for Campus Location
     * Time filter only works in 30 minutes increments, which is a bit inflexible considering many evening classes start at 5:55 PM or 7:10 PM
     * Linked Courses are not indicated 
 
 * Hovering over add button should preview where the class is placed, allowing you to easily see time conflicts
-  * 
-
-https://www.youtube.com/watch?v=wJJlD9TN6k0
+  * <img width="932" height="660" alt="image" src="https://github.com/user-attachments/assets/0302502c-b94e-452a-9beb-76d3ea316f6d" />
+  
+* Video Walkthrough of Coursicle: https://www.youtube.com/watch?v=wJJlD9TN6k0
