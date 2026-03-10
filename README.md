@@ -2,7 +2,7 @@
 
 # Product Vision
 
-Source: coursicle.com
+Source 1: coursicle.com
 
 * Product should have search bar AND large time table
   * <img width="1918" height="916" alt="image" src="https://github.com/user-attachments/assets/941df300-5072-4bbc-9c05-72ce016eff76" />
@@ -35,3 +35,13 @@ Source: coursicle.com
   * <img width="932" height="660" alt="image" src="https://github.com/user-attachments/assets/0302502c-b94e-452a-9beb-76d3ea316f6d" />
   
 * Video Walkthrough of Coursicle: https://www.youtube.com/watch?v=wJJlD9TN6k0
+
+Source 2: PatriotWeb Planning Tool 
+
+* Product should have list of added classes displayed
+ * <img width="952" height="582" alt="image" src="https://github.com/user-attachments/assets/9a885294-ff10-42e8-9b0b-037027e853a3" />
+ * Coursicle doesn't have this feature, which may be annoying to some students as they: 
+   * Can't see what the associated course title with course number
+   * Can't see any planned asynchronous courses
+   * Can't see credits associated with each class (students may want to see which classes to drop or add to get to certain number of credits)
+   * Can't see instructor for each course in time table 
