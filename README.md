@@ -38,10 +38,12 @@ Source 1: coursicle.com
 
 Source 2: PatriotWeb Planning Tool 
 
-* Product should have list of added classes displayed
+* Product should have list of added classes displayed tabularly
  * <img width="952" height="582" alt="image" src="https://github.com/user-attachments/assets/9a885294-ff10-42e8-9b0b-037027e853a3" />
- * Coursicle doesn't have this feature, which may be annoying to some students as they: 
-   * Can't see what the associated course title with course number
-   * Can't see any planned asynchronous courses
-   * Can't see credits associated with each class (students may want to see which classes to drop or add to get to certain number of credits)
-   * Can't see instructor for each course in time table 
+ * This feature (which Coursicle doesn't have) is vital as students can see:
+   * Associated course title with course number
+   * Planned asynchronous courses
+   * Credits associated with each class (students may want to see which classes to drop or add to get to certain number of credits)
+ * Issues with tabular listing of classes in PatriotWeb
+   * Removing course requires two clicks
+   * Instructor isn't listed 
