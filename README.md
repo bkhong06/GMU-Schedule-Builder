@@ -1,6 +1,6 @@
 # GMU-Schedule-Builder
 
-## Product Vision
+## Requirements Gathering
 
 ### Source 1: coursicle.com
 
