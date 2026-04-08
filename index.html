@@ -14,7 +14,12 @@
         <header class="header">
             <div class="header-brand">
                 <div class="logo">
-                    <img src="gmuimage.png" alt="GMU Logo" class="logo-img">
+                    <div class="logo-badge">
+                        <span class="logo-letter-g">G</span>
+                        <span class="logo-letter-m">M</span>
+                        <span class="logo-tm">™</span>
+                    </div>
+                    <h1 class="logo-title">Planner</h1>
                 </div>
             </div>
             <nav class="header-nav" id="headerNav">
@@ -179,7 +184,7 @@
                         </div>
                     </li>
 
-                    <!-- ECON 103 -->
+                    <!-- ECON 103 — Online -->
                     <li class="card" data-color="#27AE60" data-credits="3" data-campus="Online">
                         <span class="card-stripe" style="background:#27AE60"></span>
                         <div class="card-body">
@@ -245,7 +250,7 @@
                         </div>
                     </li>
 
-                    <!-- MGT 303 -->
+                    <!-- MGT 303 — Arlington -->
                     <li class="card" data-color="#006633" data-credits="3" data-campus="Arlington">
                         <span class="card-stripe" style="background:#006633"></span>
                         <div class="card-body">
@@ -296,47 +301,434 @@
                     </li>
                 </ul>
 
+                <div class="credit-bar">
+                    <div style="flex:1"><span>Total Credits:</span> <strong>0</strong> / 18</div>
+                    <button class="btn-print" id="btnPrint"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print</button>
+                </div>
             </aside>
 
-            <!-- ===== CALENDAR ===== -->
+            <!-- ===== MAIN CONTENT ===== -->
             <section class="main-content">
-                <div class="schedule-scroll">
-                    <div class="grid-wrapper">
-                        <div class="time-gutter">
-                            <div class="time-label" style="grid-row:2">6 AM</div>
-                            <div class="time-label" style="grid-row:4">7 AM</div>
-                            <div class="time-label" style="grid-row:6">8 AM</div>
-                            <div class="time-label" style="grid-row:8">9 AM</div>
-                            <div class="time-label" style="grid-row:10">10 AM</div>
-                            <div class="time-label" style="grid-row:12">11 AM</div>
-                            <div class="time-label" style="grid-row:14">12 PM</div>
-                            <div class="time-label" style="grid-row:16">1 PM</div>
-                            <div class="time-label" style="grid-row:18">2 PM</div>
-                            <div class="time-label" style="grid-row:20">3 PM</div>
-                            <div class="time-label" style="grid-row:22">4 PM</div>
-                            <div class="time-label" style="grid-row:24">5 PM</div>
-                            <div class="time-label" style="grid-row:26">6 PM</div>
-                            <div class="time-label" style="grid-row:28">7 PM</div>
-                            <div class="time-label" style="grid-row:30">8 PM</div>
-                            <div class="time-label" style="grid-row:32">9 PM</div>
-                            <div class="time-label" style="grid-row:34">10 PM</div>
-                        </div>
-                        <div class="day-col" data-day="mon"></div>
-                        <div class="day-col" data-day="tue"></div>
-                        <div class="day-col" data-day="wed"></div>
-                        <div class="day-col" data-day="thu"></div>
-                        <div class="day-col" data-day="fri"></div>
-                        <div class="h-lines" aria-hidden="true">
-                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="calendar">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Calendar
+                    </button>
+                    <button class="tab-btn" data-tab="list">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                        My Courses
+                        <span class="tab-badge" id="tabBadge">0</span>
+                    </button>
+                </div>
+
+                <div class="tab-panel active" id="panelCalendar">
+                    <div class="schedule-scroll">
+                        <div class="grid-wrapper">
+                            <div class="time-gutter">
+                                <div class="time-label" style="grid-row:2">6 AM</div><div class="time-label" style="grid-row:4">7 AM</div><div class="time-label" style="grid-row:6">8 AM</div><div class="time-label" style="grid-row:8">9 AM</div><div class="time-label" style="grid-row:10">10 AM</div><div class="time-label" style="grid-row:12">11 AM</div><div class="time-label" style="grid-row:14">12 PM</div><div class="time-label" style="grid-row:16">1 PM</div><div class="time-label" style="grid-row:18">2 PM</div><div class="time-label" style="grid-row:20">3 PM</div><div class="time-label" style="grid-row:22">4 PM</div><div class="time-label" style="grid-row:24">5 PM</div><div class="time-label" style="grid-row:26">6 PM</div><div class="time-label" style="grid-row:28">7 PM</div><div class="time-label" style="grid-row:30">8 PM</div><div class="time-label" style="grid-row:32">9 PM</div><div class="time-label" style="grid-row:34">10 PM</div>
+                            </div>
+                            <div class="day-col" data-day="mon"></div><div class="day-col" data-day="tue"></div><div class="day-col" data-day="wed"></div><div class="day-col" data-day="thu"></div><div class="day-col" data-day="fri"></div>
+                            <div class="current-time-line" id="currentTimeLine"></div>
+                            <div class="h-lines" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
                         </div>
                     </div>
                 </div>
+
+                <div class="tab-panel" id="panelList">
+                    <div class="list-view">
+                        <div class="list-empty" id="listEmpty">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <h3>No courses added yet</h3>
+                            <p>Search for classes on the left and click <strong>Add</strong> to build your schedule.</p>
+                        </div>
+                        <table class="list-table" id="listTable">
+                            <thead><tr><th class="lt-color"></th><th>Course</th><th>Title</th><th>CRN</th><th>Professor</th><th>Schedule</th><th>Location</th><th>Campus</th><th>Credits</th><th></th></tr></thead>
+                            <tbody id="listBody"></tbody>
+                        </table>
+                        <div class="list-summary" id="listSummary"><span id="listTotalCourses">0 courses</span><span class="list-divider">•</span><span id="listTotalCredits">0 credits</span></div>
+                    </div>
+                </div>
             </section>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-course-title" id="modalTitle">Course Title</h2><button class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button></div>
+            <div class="modal-body">
+                <div class="modal-meta"><span id="modalCredits">3 Credits</span> &bull; <span id="modalFormat">Lecture</span></div>
+                <p class="modal-desc" id="modalDesc">Course description goes here...</p>
+                <div class="modal-section"><strong>Prerequisites:</strong><p id="modalPrereqs">None</p></div>
+                <div class="modal-section"><strong>Corequisites:</strong><p id="modalCoreqs">None</p></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMU Schedule Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- ========== HEADER ========== -->
+        <header class="header">
+            <div class="header-brand">
+                <div class="logo">
+                    <div class="logo-badge">
+                        <span class="logo-letter-g">G</span>
+                        <span class="logo-letter-m">M</span>
+                        <span class="logo-tm">™</span>
+                    </div>
+                    <h1 class="logo-title">Planner</h1>
+                </div>
+            </div>
+            <nav class="header-nav" id="headerNav">
+                <div class="nav-day">Monday</div>
+                <div class="nav-day">Tuesday</div>
+                <div class="nav-day">Wednesday</div>
+                <div class="nav-day">Thursday</div>
+                <div class="nav-day">Friday</div>
+            </nav>
+        </header>
+
+        <!-- ========== BODY ========== -->
+        <div class="body">
+
+            <!-- ===== SIDEBAR ===== -->
+            <aside class="sidebar">
+
+                <div class="search-group" style="position:relative;">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" class="search-input" placeholder="Search classes, professors, campus…">
+                    </div>
+                    <button class="btn-filter" id="filterToggleBtn">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+                        Filter
+                    </button>
+
+                    <div class="filter-dropdown" id="filterDropdown">
+                        <button class="btn-clear-filters" id="clearFiltersBtn">Clear All Filters</button>
+                        <div class="filter-row">
+                            <span class="filter-label">Start:</span>
+                            <div class="time-inputs">
+                                <input type="number" class="time-input" placeholder="10" min="1" max="12">
+                                <input type="number" class="time-input" placeholder="00" min="0" max="59">
+                                <div class="am-pm-toggle">
+                                    <button class="ampm-btn active" data-type="am">am</button>
+                                    <button class="ampm-btn" data-type="pm">pm</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-row">
+                            <span class="filter-label">End:</span>
+                            <div class="time-inputs">
+                                <input type="number" class="time-input" placeholder="4" min="1" max="12">
+                                <input type="number" class="time-input" placeholder="00" min="0" max="59">
+                                <div class="am-pm-toggle">
+                                    <button class="ampm-btn" data-type="am">am</button>
+                                    <button class="ampm-btn active" data-type="pm">pm</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="days-container">
+                            <div class="day-labels"><span>M</span><span>T</span><span>W</span><span>Th</span><span>F</span></div>
+                            <div class="day-toggles">
+                                <button class="day-btn"></button><button class="day-btn"></button><button class="day-btn"></button><button class="day-btn"></button><button class="day-btn"></button>
+                            </div>
+                        </div>
+                        <div class="filter-select-row">
+                            <span class="filter-label" style="width:auto;margin-bottom:2px">Modality</span>
+                            <select class="filter-select"><option>Select...</option><option>In-Person</option><option>Online</option><option>Hybrid</option></select>
+                        </div>
+                        <div class="filter-select-row">
+                            <span class="filter-label" style="width:auto;margin-bottom:2px">Campus</span>
+                            <select class="filter-select"><option>Select...</option><option>Fairfax</option><option>Arlington</option><option>Science and Tech</option></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-bar">
+                    <span class="results-count">9 sections found</span>
+                    <select class="sort-select"><option>Sort by</option><option>Course #</option><option>Professor</option><option>Time</option></select>
+                </div>
+
+                <!-- ===== COURSE CARDS ===== -->
+                <ul class="card-list">
+
+                    <!-- IT 104 -->
+                    <li class="card" data-color="#16A085" data-credits="3" data-campus="Fairfax">
+                        <span class="card-stripe" style="background:#16A085"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#16A085">IT 104</span><span class="card-crn">CRN 71234</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">Introduction to Computing</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. Sarah Johnson</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>TR 9:00 AM – 10:15 AM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Horizon Hall 2008</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Fairfax</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag open">45 / 50 seats</span>
+                                <button class="btn-add"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- IT 213 -->
+                    <li class="card" data-color="#E67E22" data-credits="3" data-campus="Fairfax">
+                        <span class="card-stripe" style="background:#E67E22"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#E67E22">IT 213</span><span class="card-crn">CRN 82345</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">Multimedia and Web Design</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. Michael Chen</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>MW 1:30 PM – 2:45 PM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Innovation Hall 316</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Fairfax</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag limited">39 / 40 seats</span>
+                                <button class="btn-add"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- CYSE 101 -->
+                    <li class="card" data-color="#34495E" data-credits="3" data-campus="Science and Tech">
+                        <span class="card-stripe" style="background:#34495E"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#34495E">CYSE 101</span><span class="card-crn">CRN 93456</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">Intro to Cyber Security Engineering</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. David Miller</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>T 7:20 PM – 10:00 PM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Bull Run Hall 131</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Science and Tech</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag closed">60 / 60 seats</span>
+                                <button class="btn-add disabled" disabled>Full</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- PHYS 160 -->
+                    <li class="card" data-color="#2980B9" data-credits="3" data-campus="Fairfax">
+                        <span class="card-stripe" style="background:#2980B9"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#2980B9">PHYS 160</span><span class="card-crn">CRN 14567</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">University Physics I</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. Lisa Washington</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>MWF 10:00 AM – 10:50 AM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lecture Hall 1</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Fairfax</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag open">110 / 150 seats</span>
+                                <button class="btn-add"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- ECON 103 — Online -->
+                    <li class="card" data-color="#27AE60" data-credits="3" data-campus="Online">
+                        <span class="card-stripe" style="background:#27AE60"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#27AE60">ECON 103</span><span class="card-crn">CRN 36789</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">Contemporary Microeconomic Principles</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. Kevin Nguyen</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Distance Education</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Online / Asynchronous</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Online</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag limited">48 / 50 seats</span>
+                                <button class="btn-add"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- HIST 100 -->
+                    <li class="card" data-color="#D35400" data-credits="3" data-campus="Fairfax">
+                        <span class="card-stripe" style="background:#D35400"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#D35400">HIST 100</span><span class="card-crn">CRN 47890</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">History of Western Civilization</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. Amanda Peterson</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>MW 12:00 PM – 1:15 PM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Enterprise Hall 80</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Fairfax</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag closed">100 / 100 seats</span>
+                                <button class="btn-add disabled" disabled>Full</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- ART 101 -->
+                    <li class="card" data-color="#8E44AD" data-credits="3" data-campus="Fairfax">
+                        <span class="card-stripe" style="background:#8E44AD"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#8E44AD">ART 101</span><span class="card-crn">CRN 58901</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">Intro to the Visual Arts</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. James Sullivan</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>F 10:00 AM – 12:40 PM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Art and Design Bldg 2024</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Fairfax</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag open">10 / 30 seats</span>
+                                <button class="btn-add"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- MGT 303 — Arlington -->
+                    <li class="card" data-color="#006633" data-credits="3" data-campus="Arlington">
+                        <span class="card-stripe" style="background:#006633"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#006633">MGT 303</span><span class="card-crn">CRN 69012</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">Principles of Management</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. Maria Garcia</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>TR 10:30 AM – 11:45 AM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Van Metre Hall 111</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Arlington</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag open">38 / 45 seats</span>
+                                <button class="btn-add"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- STAT 250 -->
+                    <li class="card" data-color="#C6960D" data-credits="3" data-campus="Fairfax">
+                        <span class="card-stripe" style="background:#C6960D"></span>
+                        <div class="card-body">
+                            <div class="card-head">
+                                <div><span class="card-badge" style="background:#C6960D">STAT 250</span><span class="card-crn">CRN 70123</span></div>
+                                <button class="btn-dots" aria-label="Course details" title="Course details"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+                            </div>
+                            <h3 class="card-title">Introductory Statistics I</h3>
+                            <div class="card-meta">
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Prof. William Davis</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>MW 4:30 PM – 5:45 PM</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Exploratory Hall L003</div>
+                                <div class="meta-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>Fairfax</div>
+                            </div>
+                            <div class="card-foot">
+                                <span class="seats-tag limited">58 / 60 seats</span>
+                                <button class="btn-add"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="empty-state" id="emptyState">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#bbb" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <p>No sections match your filters</p>
+                        <span>Try adjusting your search or filters</span>
+                    </li>
+                </ul>
+
+                <div class="credit-bar">
+                    <div style="flex:1"><span>Total Credits:</span> <strong>0</strong> / 18</div>
+                    <button class="btn-print" id="btnPrint"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print</button>
+                </div>
+            </aside>
+
+            <!-- ===== MAIN CONTENT ===== -->
+            <section class="main-content">
+                <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="calendar">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Calendar
+                    </button>
+                    <button class="tab-btn" data-tab="list">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                        My Courses
+                        <span class="tab-badge" id="tabBadge">0</span>
+                    </button>
+                </div>
+
+                <div class="tab-panel active" id="panelCalendar">
+                    <div class="schedule-scroll">
+                        <div class="grid-wrapper">
+                            <div class="time-gutter">
+                                <div class="time-label" style="grid-row:2">6 AM</div><div class="time-label" style="grid-row:4">7 AM</div><div class="time-label" style="grid-row:6">8 AM</div><div class="time-label" style="grid-row:8">9 AM</div><div class="time-label" style="grid-row:10">10 AM</div><div class="time-label" style="grid-row:12">11 AM</div><div class="time-label" style="grid-row:14">12 PM</div><div class="time-label" style="grid-row:16">1 PM</div><div class="time-label" style="grid-row:18">2 PM</div><div class="time-label" style="grid-row:20">3 PM</div><div class="time-label" style="grid-row:22">4 PM</div><div class="time-label" style="grid-row:24">5 PM</div><div class="time-label" style="grid-row:26">6 PM</div><div class="time-label" style="grid-row:28">7 PM</div><div class="time-label" style="grid-row:30">8 PM</div><div class="time-label" style="grid-row:32">9 PM</div><div class="time-label" style="grid-row:34">10 PM</div>
+                            </div>
+                            <div class="day-col" data-day="mon"></div><div class="day-col" data-day="tue"></div><div class="day-col" data-day="wed"></div><div class="day-col" data-day="thu"></div><div class="day-col" data-day="fri"></div>
+                            <div class="current-time-line" id="currentTimeLine"></div>
+                            <div class="h-lines" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="panelList">
+                    <div class="list-view">
+                        <div class="list-empty" id="listEmpty">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <h3>No courses added yet</h3>
+                            <p>Search for classes on the left and click <strong>Add</strong> to build your schedule.</p>
+                        </div>
+                        <table class="list-table" id="listTable">
+                            <thead><tr><th class="lt-color"></th><th>Course</th><th>Title</th><th>CRN</th><th>Professor</th><th>Schedule</th><th>Location</th><th>Campus</th><th>Credits</th><th></th></tr></thead>
+                            <tbody id="listBody"></tbody>
+                        </table>
+                        <div class="list-summary" id="listSummary"><span id="listTotalCourses">0 courses</span><span class="list-divider">•</span><span id="listTotalCredits">0 credits</span></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-course-title" id="modalTitle">Course Title</h2><button class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button></div>
+            <div class="modal-body">
+                <div class="modal-meta"><span id="modalCredits">3 Credits</span> &bull; <span id="modalFormat">Lecture</span></div>
+                <p class="modal-desc" id="modalDesc">Course description goes here...</p>
+                <div class="modal-section"><strong>Prerequisites:</strong><p id="modalPrereqs">None</p></div>
+                <div class="modal-section"><strong>Corequisites:</strong><p id="modalCoreqs">None</p></div>
+            </div>
         </div>
     </div>
 
