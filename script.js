@@ -20,20 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerNav      = document.getElementById('headerNav');
 
     // Tab elements
-    const tabBtns        = document.querySelectorAll('.tab-btn');
-    const panelCalendar  = document.getElementById('panelCalendar');
-    const panelList      = document.getElementById('panelList');
-    const tabBadge       = document.getElementById('tabBadge');
-    const listBody       = document.getElementById('listBody');
-    const listTable      = document.getElementById('listTable');
-    const listEmpty      = document.getElementById('listEmpty');
-    const listSummary    = document.getElementById('listSummary');
+    const tabBtns          = document.querySelectorAll('.tab-btn');
+    const panelCalendar    = document.getElementById('panelCalendar');
+    const panelList        = document.getElementById('panelList');
+    const tabBadge         = document.getElementById('tabBadge');
+    const listBody         = document.getElementById('listBody');
+    const listTable        = document.getElementById('listTable');
+    const listEmpty        = document.getElementById('listEmpty');
+    const listSummary      = document.getElementById('listSummary');
     const listTotalCourses = document.getElementById('listTotalCourses');
     const listTotalCredits = document.getElementById('listTotalCredits');
 
     let totalCredits  = 0;
     const onlineAdded = new Set();
-    const addedCourses = [];   // master array of added course data
+    const addedCourses = [];
 
     /* ─── Remove placeholder events ─── */
     document.querySelectorAll('.schedule .event').forEach(el => el.remove());
@@ -244,6 +244,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
+    // CAMPUS BADGE HELPER
+    // ==========================================
+    function getCampusBadge(campus) {
+        const map = {
+            'Fairfax':          ['fairfax',       'Fairfax'],
+            'Arlington':        ['arlington',     'Arlington'],
+            'Science and Tech': ['scitech',       'Sci-Tech'],
+            'Online':           ['online-campus', 'Online'],
+        };
+        const [cls, label] = map[campus] || ['fairfax', 'Fairfax'];
+        return `<span class="lt-campus-badge ${cls}">${label}</span>`;
+    }
+
+    // ==========================================
     // FILTER BADGE
     // ==========================================
     function updateFilterBadge() {
@@ -279,9 +293,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const arr = Array.from(cardList.querySelectorAll('.card'));
         arr.sort((a, b) => {
             if (v === 'Course #')
-                return a.querySelector('.card-badge').textContent.localeCompare(b.querySelector('.card-badge').textContent);
+                return a.querySelector('.card-badge').textContent
+                    .localeCompare(b.querySelector('.card-badge').textContent);
             if (v === 'Professor')
-                return a.querySelectorAll('.meta-row')[0].textContent.localeCompare(b.querySelectorAll('.meta-row')[0].textContent);
+                return a.querySelectorAll('.meta-row')[0].textContent
+                    .localeCompare(b.querySelectorAll('.meta-row')[0].textContent);
             if (v === 'Time') {
                 const at = parseCardTime(a.querySelectorAll('.meta-row')[1].textContent.trim());
                 const bt = parseCardTime(b.querySelectorAll('.meta-row')[1].textContent.trim());
@@ -305,6 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const courseTitle  = card.querySelector('.card-title').textContent.trim();
             const color        = card.dataset.color;
             const credits      = parseInt(card.dataset.credits) || 3;
+            const campus       = card.dataset.campus || 'Fairfax';
             const crn          = card.querySelector('.card-crn').textContent.trim();
             const metaRows     = card.querySelectorAll('.meta-row');
             const profText     = metaRows[0].textContent.trim();
@@ -312,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const locationText = metaRows[2].textContent.trim();
             const isOnline     = /distance|online/i.test(timeText);
 
+            // ── ONLINE COURSE ──
             if (isOnline) {
                 if (onlineAdded.has(courseCode)) return;
                 onlineAdded.add(courseCode);
@@ -319,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 addedCourses.push({
                     code: courseCode, title: courseTitle, crn, color,
                     professor: profText, schedule: timeText,
-                    location: locationText, credits, isOnline: true
+                    location: locationText, campus, credits, isOnline: true
                 });
 
                 alert(`✅ ${courseCode} is an online course and has been added!`);
@@ -329,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // ── IN-PERSON COURSE ──
             const parts     = timeText.split(' ');
             const daysPart  = parts[0];
             const timeRange = parts.slice(1).join(' ');
@@ -357,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Place event blocks
+            // Place event blocks on calendar
             daysArr.forEach(ch => {
                 const col = document.querySelector(`.day-col[data-day="${dayMap[ch]}"]`);
                 if (!col) return;
@@ -372,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addedCourses.push({
                 code: courseCode, title: courseTitle, crn, color,
                 professor: profText, schedule: timeText,
-                location: locationText, credits, isOnline: false
+                location: locationText, campus, credits, isOnline: false
             });
 
             markAdded(btn, card);
@@ -414,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTabBadge() {
         tabBadge.textContent = addedCourses.length;
         tabBadge.classList.remove('pulse');
-        void tabBadge.offsetWidth;  // force reflow
+        void tabBadge.offsetWidth; // force reflow
         tabBadge.classList.add('pulse');
     }
 
@@ -442,7 +461,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><span class="lt-dot" style="background:${course.color}"></span></td>
+                <td style="width:6px;padding:0;position:relative;">
+                    <span class="lt-dot" style="background:${course.color};width:6px;height:100%;position:absolute;top:0;left:0;border-radius:4px 0 0 4px;display:block;"></span>
+                </td>
                 <td class="lt-course">${course.code}</td>
                 <td class="lt-title">${course.title}</td>
                 <td class="lt-crn">${course.crn}</td>
@@ -453,17 +474,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         : course.schedule}
                 </td>
                 <td class="lt-location">${course.location}</td>
+                <td class="lt-campus">${getCampusBadge(course.campus)}</td>
                 <td class="lt-credits">${course.credits}</td>
                 <td>
                     <button class="btn-remove-list" data-idx="${idx}" data-code="${course.code}">
-                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none"
+                             stroke="currentColor" stroke-width="2.5"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
                         Remove
                     </button>
                 </td>
             `;
-
             listBody.appendChild(tr);
         });
 
@@ -491,9 +515,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.remove();
         });
 
-        // Find the course data to get credits before removing
+        // Find course data to get credits before removing
         const courseData = addedCourses.find(c => c.code === code);
-        const credits = courseData ? courseData.credits : 3;
+        const credits    = courseData ? courseData.credits : 3;
 
         // Remove from addedCourses array
         const idx = addedCourses.findIndex(c => c.code === code);
@@ -559,26 +583,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     modalCloseBtn.addEventListener('click', () => modal.classList.remove('show'));
-    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('show');
+    });
 
     // ==========================================
-    // 13. KEYBOARD (Escape)
+    // 13. KEYBOARD (Escape + Focus Trap)
     // ==========================================
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (modal.classList.contains('show')) modal.classList.remove('show');
+            if (modal.classList.contains('show'))          modal.classList.remove('show');
             else if (filterDropdown.classList.contains('show')) filterDropdown.classList.remove('show');
         }
     });
 
-    // Focus trap
     modal.addEventListener('keydown', (e) => {
         if (e.key !== 'Tab') return;
-        const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const focusable = modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
         if (focusable.length === 0) return;
         const first = focusable[0], last = focusable[focusable.length - 1];
         if (e.shiftKey) {
-            if (document.activeElement === first) { last.focus(); e.preventDefault(); }
+            if (document.activeElement === first) { last.focus();  e.preventDefault(); }
         } else {
             if (document.activeElement === last)  { first.focus(); e.preventDefault(); }
         }
@@ -594,7 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     (function highlightToday() {
         const dayIdx = new Date().getDay();
-        const names  = ['','mon','tue','wed','thu','fri'];
+        const names  = ['', 'mon', 'tue', 'wed', 'thu', 'fri'];
         if (dayIdx >= 1 && dayIdx <= 5) {
             const col = document.querySelector(`.day-col[data-day="${names[dayIdx]}"]`);
             if (col) col.classList.add('today');
@@ -610,7 +637,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const h = now.getHours(), m = now.getMinutes();
         if (h >= 6 && h < 23) {
             const topPx = ((h - 6) * 60) + m;
-            timeLine.style.top = topPx + 'px';
+            timeLine.style.top    = topPx + 'px';
             timeLine.style.display = 'block';
         } else {
             timeLine.style.display = 'none';
