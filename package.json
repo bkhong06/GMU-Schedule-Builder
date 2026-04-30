@@ -1,5 +1,6 @@
 {
   "name": "gmu-schedule-planner",
+  "homepage": "https://bkhong06.github.io/GMU-Schedule-Builder/",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.3.1",
