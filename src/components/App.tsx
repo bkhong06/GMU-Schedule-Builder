@@ -133,7 +133,7 @@ const App: React.FC = () => {
   const totalCredits = schedule ? schedule.getTotalCredits() : 0;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/GMU-Schedule-Builder">
       <div className="app">
         <Header />
         {conflict && (
