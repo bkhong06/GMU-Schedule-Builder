@@ -9,7 +9,7 @@ interface ScheduleCalendarProps {
 }
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-const DAY_CODES = ['M', 'T', 'W', 'Th', 'F'];
+const DAY_CODES = ['M', 'T', 'W', 'R', 'F'];
 
 // Grid constants — must match CSS variables
 const ROW_H = 30;    // --row-h: 30px  (each row = 30 minutes)
@@ -104,9 +104,12 @@ const ScheduleCalendar: React.FC<ScheduleCalendarProps> = ({
 
         {/* Course event blocks */}
         {scheduledCourses.map(course => {
+          const parsed = parseSchedule(course.schedule);
           const dayIndices: number[] = [];
-          DAY_CODES.forEach((code, idx) => {
-            if (course.schedule.includes(code)) dayIndices.push(idx);
+          
+          parsed.days.forEach(day => {
+            const idx = DAY_CODES.indexOf(day);
+            if (idx !== -1) dayIndices.push(idx);
           });
 
           return dayIndices.map(dayIdx => {
