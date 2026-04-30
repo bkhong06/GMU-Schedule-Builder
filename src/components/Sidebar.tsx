@@ -99,8 +99,8 @@ const Sidebar: React.FC<SidebarProps> = ({
     filters.modality !== 'Select...' ? 1 : 0,
     filters.campus !== 'Select...' ? 1 : 0,
     filters.selectedDays.length > 0 ? 1 : 0,
-    filters.startTime !== null ? 1 : 0,
-    filters.endTime !== null ? 1 : 0,
+    filters.startTime !== null && filters.startTime !== 360 ? 1 : 0,
+    filters.endTime !== null && filters.endTime !== 1380 ? 1 : 0,
   ].reduce((a, b) => a + b, 0);
 
   return (

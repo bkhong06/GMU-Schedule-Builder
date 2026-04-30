@@ -58,8 +58,8 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ filters, onFiltersChang
   const handleClear = () => {
     onFiltersChange({
       searchQuery: filters.searchQuery, // keep search
-      startTime: null,
-      endTime: null,
+      startTime: 360,
+      endTime: 1380,
       selectedDays: [],
       modality: 'Select...',
       campus: 'Select...',
