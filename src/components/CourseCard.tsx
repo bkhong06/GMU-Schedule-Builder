@@ -59,9 +59,9 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, onAdd, isAdded }) => {
             </div>
             <div className="meta-row">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M3 11 L12 3 L21 11 L21 21 L3 21 Z" />
               </svg>
-              <span>{course.credits} Credits</span>
+              <span>{course.campus}</span>
             </div>
           </div>
           <div className="card-foot">
