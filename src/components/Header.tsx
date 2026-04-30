@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-brand">
         <div className="logo">
-          <img src="/gmulogo.png" alt="GMU Logo" className="logo-image" />
+          <img src="gmulogo.png" alt="GMU Logo" className="logo-image" />
           <h1 className="logo-title">Planner</h1>
         </div>
       </div>
