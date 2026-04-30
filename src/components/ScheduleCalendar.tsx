@@ -131,7 +131,8 @@ const ScheduleCalendar: React.FC<ScheduleCalendarProps> = ({
                 }}
               >
                 <strong>{course.code}</strong>
-                <span>{course.schedule}</span>
+                <span>{course.schedule.replace(/^[MTWRF]+\s*/, '')}</span>
+                {course.location && <span className="event-room">{course.location}</span>}
               </div>
             );
           });
