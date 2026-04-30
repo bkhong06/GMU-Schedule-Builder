@@ -45,8 +45,8 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, onAdd, isAdded }) => {
             </div>
             <div className="meta-row">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="1" />
-                <path d="M12 1v6m0 6v6" />
+                <circle cx="12" cy="12" r="9" />
+                <polyline points="12 7 12 12 15 15" />
               </svg>
               <span>{course.schedule}</span>
             </div>
