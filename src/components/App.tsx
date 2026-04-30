@@ -75,8 +75,8 @@ const App: React.FC = () => {
   const [conflict, setConflict] = useState<ScheduleConflict | null>(null);
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
-    startTime: null,
-    endTime: null,
+    startTime: 360,
+    endTime: 1380,
     selectedDays: [],
     modality: 'Select...',
     campus: 'Select...',

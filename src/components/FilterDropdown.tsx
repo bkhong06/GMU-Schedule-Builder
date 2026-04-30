@@ -19,7 +19,7 @@ const toMinutes = (h: number, m: number, ampm: 'AM' | 'PM'): number => {
 
 // Parse total minutes back to { h, m, ampm }
 const fromMinutes = (total: number | null): { h: number; m: number; ampm: 'AM' | 'PM' } => {
-  if (total === null) return { h: 8, m: 0, ampm: 'AM' };
+  if (total === null) return { h: 6, m: 0, ampm: 'AM' };
   const ampm: 'AM' | 'PM' = total >= 720 ? 'PM' : 'AM';
   const h24 = Math.floor(total / 60);
   const h = h24 % 12 || 12;
